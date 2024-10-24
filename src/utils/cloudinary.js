@@ -1,7 +1,5 @@
 import {v2 as cloudinary} from "cloudinary"
 import fs from "fs"
-
-import { v2 as cloudinary } from 'cloudinary';
 import { response } from "express";
 
 (async function() {
@@ -49,7 +47,7 @@ const uploadOnCloudinary=async(localFilePath)=>{
     try {
         if(!localFilePath)return null
         //upload the file on cloudinary
-        await response=cloudinary.uploader.upload(localFilePath,{
+        const response = await cloudinary.uploader.upload(localFilePath,{
             resouce_type:"auto"
         })
         //file has been uploaded successfully

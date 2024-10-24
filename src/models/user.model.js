@@ -1,7 +1,7 @@
-import req from "express/lib/request";
-import mongoose , {Schema} from "mongoose";
-import jwt from "jsonwebtoken"
-import bcrypt from "bcrypt"
+import express from "express";
+import mongoose, { Schema } from "mongoose";
+import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
 
 const userSchema = new Schema({
     userName: { type:String,
@@ -49,7 +49,7 @@ const userSchema = new Schema({
 userSchema.pre("save", async function (next) {
     if(!this.isModified("password")) return next();
 
-    this.password =  bcrypt.hashSync(this.password,10)
+    this.password =  await bcrypt.hashSync(this.password,10)
     next()
 })
 
